@@ -1,5 +1,6 @@
 package nu.hci.codemenao;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,6 +13,13 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // This code just for testing
+        /*
+        Intent intent = new Intent(MainActivity.this,VisualEditorActivity.class);
+        startActivity(intent);
+        */
+
     }
 
     @Override
