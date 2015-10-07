@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 
@@ -15,8 +16,12 @@ public class VisualEditorActivity extends ActionBarActivity {
         setContentView(R.layout.activity_visual_editor);
 
         WebView myWebView = (WebView) findViewById(R.id.visualEditorView);
-        myWebView.loadUrl("http://www.nurate.yerchik.com");
+        WebSettings webSettings = myWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        // load visual editor
+        myWebView.loadUrl("http://codemenao.herokuapp.com/");
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
