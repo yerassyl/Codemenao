@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="nu.hci.codemenao" >
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -20,6 +21,10 @@
         <activity
             android:name=".VisualEditorActivity"
             android:label="@string/title_activity_visual_editor" >
+        </activity>
+        <activity
+            android:name=".ConnectingNaoActivity"
+            android:label="@string/title_activity_connecting_nao" >
         </activity>
     </application>
 

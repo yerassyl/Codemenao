@@ -20,6 +20,7 @@ public class VisualEditorActivity extends ActionBarActivity {
         webSettings.setJavaScriptEnabled(true);
         // load visual editor
         myWebView.loadUrl("http://codemenao.herokuapp.com/");
+        myWebView.addJavascriptInterface(new WebAppInterface(VisualEditorActivity.this), "Android");
     }
 
     @Override

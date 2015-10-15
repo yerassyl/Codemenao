@@ -14,8 +14,11 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // get ip and port from shared prefs
+
+
         // This code just for testing
-        Intent intent = new Intent(MainActivity.this,VisualEditorActivity.class);
+        Intent intent = new Intent(MainActivity.this,ConnectingNaoActivity.class);
         startActivity(intent);
         // ends here
 
