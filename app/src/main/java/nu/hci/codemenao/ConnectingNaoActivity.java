@@ -2,8 +2,11 @@ package nu.hci.codemenao;
 
 import android.app.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -16,14 +19,18 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.Enumeration;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 
 public class ConnectingNaoActivity extends Activity {
 
     TextView serverIp;
 
-    protected int my_backlog = 5;
+    protected int my_backlog = 1;
     protected ServerSocket my_serverSocket;
+    protected static BlockingQueue<String> q;
+    Button startGameBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +50,7 @@ public class ConnectingNaoActivity extends Activity {
             se.printStackTrace();
         }
 
+        q = new LinkedBlockingQueue<String>();
         // killed.
         new Thread(new Runnable() {
             @Override
@@ -55,17 +63,29 @@ public class ConnectingNaoActivity extends Activity {
                         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                         out.println("1");
 
-                        // Wrap a buffered reader round the socket input stream.
-                        // Read the javadoc to understand why we do this rather than dealing
-                        // with reading from raw sockets.
-                        BufferedReader in = new BufferedReader(new InputStreamReader(socket
-                                .getInputStream()));
-                        String msg = in.readLine();
-                        System.out.println("message is: " + msg);
+                        /*
+                        while(true){
+                            if ( !q.isEmpty() ){
+                                try {
+                                    String temp = q.take();
+                                    out.println(temp);
+                                }catch(InterruptedException e){
+                                    Log.d("yerchik", "couldn't take from queue: "+ e.getMessage());
+                                }
+                            }
+                            */
+                            // Wrap a buffered reader round the socket input stream.
+                            // Read the javadoc to understand why we do this rather than dealing
+                            // with reading from raw sockets.
+                            BufferedReader in = new BufferedReader(new InputStreamReader(socket
+                                    .getInputStream()));
+                            String msg = in.readLine();
+                            System.out.println("message is: " + msg);
+                        //}
 
                         // tidy up
-                        in.close();
-                        socket.close();
+                        //in.close();
+                        //socket.close();
                     } catch (IOException ioe) {
                         ioe.printStackTrace();
                     } catch (SecurityException se) {
@@ -74,6 +94,16 @@ public class ConnectingNaoActivity extends Activity {
                 }
             }
         }).start();
+        /*
+        startGameBtn = (Button)findViewById(R.id.startGameBtn);
+        startGameBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Intent intent = new Intent(ConnectingNaoActivity.this,VisualEditorActivity.class);
+                //startActivity(intent);
+            }
+        });
+        */
     }
 
 
