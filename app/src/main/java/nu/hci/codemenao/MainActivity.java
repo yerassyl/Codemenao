@@ -18,8 +18,8 @@ public class MainActivity extends ActionBarActivity {
 
 
         // This code just for testing
-        Intent intent = new Intent(MainActivity.this,ConnectingNaoActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(MainActivity.this,ConnectingNaoActivity.class);
+        //startActivity(intent);
         // ends here
 
     }

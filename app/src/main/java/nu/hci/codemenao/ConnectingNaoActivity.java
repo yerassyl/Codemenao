@@ -30,16 +30,14 @@ public class ConnectingNaoActivity extends Activity {
     protected int my_backlog = 1;
     protected ServerSocket my_serverSocket;
     protected static BlockingQueue<String> q;
-    Button startGameBtn;
-
+    BufferedReader in;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connecting_nao);
-
         serverIp = (TextView)findViewById(R.id.serverIp);
         getDeviceIpAddress();
-        // TCPSocketServer server = new TCPSocketServer(7200);
+
         // Listen on the server socket. This will run until the program is
         try {
             my_serverSocket = new ServerSocket(7200, my_backlog);
@@ -55,33 +53,30 @@ public class ConnectingNaoActivity extends Activity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while (true) {
+               // while (true) {
                     try {
                         // Listens for a connection to be made to this socket.
                         Socket socket = my_serverSocket.accept();
                         //send message to client
                         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-                        out.println("1");
+                        //out.println("1");
 
-                        /*
-                        while(true){
-                            if ( !q.isEmpty() ){
+                       in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                       while(true){
+                                Log.d("yerchik/q", "queue is not empty");
                                 try {
+                                    String msg = in.readLine();
+                                    System.out.println("message is: " + msg);
                                     String temp = q.take();
                                     out.println(temp);
                                 }catch(InterruptedException e){
                                     Log.d("yerchik", "couldn't take from queue: "+ e.getMessage());
                                 }
-                            }
-                            */
+
                             // Wrap a buffered reader round the socket input stream.
                             // Read the javadoc to understand why we do this rather than dealing
                             // with reading from raw sockets.
-                            BufferedReader in = new BufferedReader(new InputStreamReader(socket
-                                    .getInputStream()));
-                            String msg = in.readLine();
-                            System.out.println("message is: " + msg);
-                        //}
+                        }
 
                         // tidy up
                         //in.close();
@@ -91,22 +86,17 @@ public class ConnectingNaoActivity extends Activity {
                     } catch (SecurityException se) {
                         se.printStackTrace();
                     }
-                }
+                //}
             }
         }).start();
-        /*
-        startGameBtn = (Button)findViewById(R.id.startGameBtn);
-        startGameBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Intent intent = new Intent(ConnectingNaoActivity.this,VisualEditorActivity.class);
-                //startActivity(intent);
-            }
-        });
-        */
+
+
     }
 
-
+    public void startLevel1(View view) {
+        Intent intent = new Intent(ConnectingNaoActivity.this,VisualEditorActivity.class);
+        startActivity(intent);
+    }
 
     /**
      * Get ip address of the device

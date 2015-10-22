@@ -24,8 +24,9 @@ public class WebAppInterface {
             String temp = Character.toString(commands.charAt(i));
             try {
                 ConnectingNaoActivity.q.put(temp);
+                Log.d("yerchik/q", "put to queue");
             }catch(InterruptedException e){
-                Log.d("yerchik", "couldn't put into queue: "+ e.getMessage());
+                Log.d("yerchik/q", "couldn't put into queue: "+ e.getMessage());
             }
         }
 
