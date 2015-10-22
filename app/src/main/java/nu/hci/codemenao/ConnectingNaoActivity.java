@@ -30,7 +30,6 @@ public class ConnectingNaoActivity extends Activity {
     protected int my_backlog = 1;
     protected ServerSocket my_serverSocket;
     protected static BlockingQueue<String> q;
-    BufferedReader in;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,12 +60,13 @@ public class ConnectingNaoActivity extends Activity {
                         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                         //out.println("1");
 
-                       in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                        while(true){
                                 Log.d("yerchik/q", "queue is not empty");
                                 try {
+                                    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                                     String msg = in.readLine();
-                                    System.out.println("message is: " + msg);
+                                    //System.out.println("message is: " + msg);
+                                    //Log.d("yerchik/ack", "ack: " +msg);
                                     String temp = q.take();
                                     out.println(temp);
                                 }catch(InterruptedException e){
@@ -77,6 +77,7 @@ public class ConnectingNaoActivity extends Activity {
                             // Read the javadoc to understand why we do this rather than dealing
                             // with reading from raw sockets.
                         }
+
 
                         // tidy up
                         //in.close();
