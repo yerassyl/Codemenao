@@ -27,9 +27,9 @@ public class ConnectingNaoActivity extends Activity {
 
     TextView serverIp;
 
-    protected int my_backlog = 1;
     protected ServerSocket my_serverSocket;
     protected static BlockingQueue<String> q;
+    BufferedReader in;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +39,7 @@ public class ConnectingNaoActivity extends Activity {
 
         // Listen on the server socket. This will run until the program is
         try {
-            my_serverSocket = new ServerSocket(7200, my_backlog);
+            my_serverSocket = new ServerSocket(7200);
             System.out.println("TCP socket listening on port " + 7200);
         } catch (IOException ioe) {
             ioe.printStackTrace();
@@ -52,7 +52,7 @@ public class ConnectingNaoActivity extends Activity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-               // while (true) {
+                while (true) {
                     try {
                         // Listens for a connection to be made to this socket.
                         Socket socket = my_serverSocket.accept();
@@ -60,15 +60,16 @@ public class ConnectingNaoActivity extends Activity {
                         PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
                         //out.println("1");
 
-                       while(true){
-                                Log.d("yerchik/q", "queue is not empty");
+                       //while(true){
+                        in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                        String msg = in.readLine();
                                 try {
-                                    BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                                    String msg = in.readLine();
-                                    //System.out.println("message is: " + msg);
-                                    //Log.d("yerchik/ack", "ack: " +msg);
-                                    String temp = q.take();
-                                    out.println(temp);
+                                    if (msg!=null && msg.equals("ACK")){
+                                        Log.d("yerchik/ack", "ack: " + msg);
+                                        String temp = q.take();
+                                        out.println(temp);
+                                    }
+
                                 }catch(InterruptedException e){
                                     Log.d("yerchik", "couldn't take from queue: "+ e.getMessage());
                                 }
@@ -76,18 +77,18 @@ public class ConnectingNaoActivity extends Activity {
                             // Wrap a buffered reader round the socket input stream.
                             // Read the javadoc to understand why we do this rather than dealing
                             // with reading from raw sockets.
-                        }
+                        //}
 
 
                         // tidy up
-                        //in.close();
-                        //socket.close();
+                        in.close();
+                        socket.close();
                     } catch (IOException ioe) {
                         ioe.printStackTrace();
                     } catch (SecurityException se) {
                         se.printStackTrace();
                     }
-                //}
+                }
             }
         }).start();
 
