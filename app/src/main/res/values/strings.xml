@@ -7,6 +7,10 @@
     <string name="title_activity_connecting_nao">ConnectingNaoActivity</string>
 
 
-    <string name="start_game">Level 1 (Move)</string>
+    <string name="start_game">Connect Nao</string>
+    <string name="new_game">New Game</string>
+    <string name="resume">Resume</string>
+    <string name="choose_level">Choose Level</string>
+    <string name="title_activity_choose_level">ChooseLevel</string>
 
 </resources>

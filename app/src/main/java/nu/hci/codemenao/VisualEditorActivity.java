@@ -1,26 +1,57 @@
 package nu.hci.codemenao;
 
+import android.app.ProgressDialog;
+import android.graphics.Bitmap;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Toast;
 
 
 public class VisualEditorActivity extends ActionBarActivity {
+
+    WebView myWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visual_editor);
 
-        WebView myWebView = (WebView) findViewById(R.id.visualEditorView);
+        final ProgressDialog pd = ProgressDialog.show(this, "", "Please wait...", true);
+
+         myWebView = (WebView) findViewById(R.id.visualEditorView);
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         // load visual editor
-        myWebView.loadUrl("http://codemenao.herokuapp.com/");
+
         myWebView.addJavascriptInterface(new WebAppInterface(VisualEditorActivity.this), "Android");
+
+        myWebView.setWebViewClient(new WebViewClient() {
+            public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                Toast.makeText(getApplicationContext(), description, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                pd.show();
+            }
+
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                pd.dismiss();
+
+                String webUrl = myWebView.getUrl();
+
+            }
+
+        });
+
+        myWebView.loadUrl("http://codemenao.herokuapp.com/");
     }
 
     @Override

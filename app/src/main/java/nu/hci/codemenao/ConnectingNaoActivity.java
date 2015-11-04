@@ -23,18 +23,22 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 
-public class ConnectingNaoActivity extends Activity {
+public class ConnectingNaoActivity extends Activity implements View.OnClickListener{
 
     TextView serverIp;
+    Button startGameButton;
 
     protected ServerSocket my_serverSocket;
-    protected static BlockingQueue<String> q;
+    public static BlockingQueue<String> q;
+
     BufferedReader in;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connecting_nao);
         serverIp = (TextView)findViewById(R.id.serverIp);
+        startGameButton = (Button) findViewById(R.id.startGameBtn);
+        startGameButton.setOnClickListener(this);
         getDeviceIpAddress();
 
         // Listen on the server socket. This will run until the program is
@@ -95,10 +99,10 @@ public class ConnectingNaoActivity extends Activity {
 
     }
 
-    public void startLevel1(View view) {
+    /*public void startLevel1(View view) {
         Intent intent = new Intent(ConnectingNaoActivity.this,VisualEditorActivity.class);
         startActivity(intent);
-    }
+    }*/
 
     /**
      * Get ip address of the device
@@ -124,6 +128,11 @@ public class ConnectingNaoActivity extends Activity {
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
+    }
 }
 
 
