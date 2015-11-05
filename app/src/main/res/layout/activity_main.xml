@@ -7,14 +7,16 @@
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
     <Button android:id="@+id/choose"
+        style="@style/choose_task_button"
         android:text="@string/choose_level"
         android:layout_height="wrap_content"
         android:layout_width="150dp"
         android:layout_gravity="center"
-        android:layout_below="@+id/new_game"
-        android:layout_alignEnd="@+id/new_game"></Button>
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/new_game"></Button>
 
     <Button android:id="@+id/resume"
+        style="@style/resume_button"
         android:text="@string/resume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,12 +28,14 @@
         android:layout_gravity="center_horizontal|top"></Button>
 
     <Button android:id="@+id/new_game"
+        style="@style/new_game_button"
         android:text="@string/new_game"
         android:layout_height="wrap_content"
         android:layout_width="150dp"
         android:layout_gravity="center"
+        android:layout_marginTop="35dp"
         android:layout_below="@+id/resume"
-        android:layout_alignEnd="@+id/resume"></Button>
+        android:layout_alignStart="@+id/resume"></Button>
 
 
 </RelativeLayout>

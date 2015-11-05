@@ -33,7 +33,7 @@ public class ChooseLevel extends AppCompatActivity implements ListView.OnItemCli
 
         int lastLevel = getIntent().getIntExtra("current_level",1);
         for (int i=1;i<=lastLevel;i++) {
-            listLevels.add("Level " + i);
+            listLevels.add("Задание " + i);
         }
         listView.setOnItemClickListener(this);
 

@@ -25,7 +25,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         newGame = (Button) findViewById(R.id.new_game);
         resume = (Button) findViewById(R.id.resume);
         chooseLevel = (Button) findViewById(R.id.choose);
-
         newGame.setOnClickListener(this);
         resume.setOnClickListener(this);
         chooseLevel.setOnClickListener(this);

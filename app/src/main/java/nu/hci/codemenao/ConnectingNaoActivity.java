@@ -3,9 +3,13 @@ package nu.hci.codemenao;
 import android.app.Activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Typeface;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -27,7 +31,7 @@ public class ConnectingNaoActivity extends Activity implements View.OnClickListe
 
     TextView serverIp;
     Button startGameButton;
-
+    TextView fontChanged1,fontChanged2,fontChanged3;
     protected ServerSocket my_serverSocket;
     public static BlockingQueue<String> q;
 
@@ -37,9 +41,18 @@ public class ConnectingNaoActivity extends Activity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connecting_nao);
         serverIp = (TextView)findViewById(R.id.serverIp);
+        fontChanged1 = (TextView) findViewById(R.id.ip);
+        fontChanged2 = (TextView) findViewById(R.id.serverIp);
+        fontChanged3 = (TextView) findViewById(R.id.textView);
+        Typeface face = Typeface.createFromAsset(getAssets(),"fonts/kidsbold.otf");
+        fontChanged1.setTypeface(face);
+        fontChanged2.setTypeface(face);
+        fontChanged3.setTypeface(face);
         startGameButton = (Button) findViewById(R.id.startGameBtn);
+        startGameButton.setTypeface(face);
         startGameButton.setOnClickListener(this);
         getDeviceIpAddress();
+
 
         // Listen on the server socket. This will run until the program is
         try {

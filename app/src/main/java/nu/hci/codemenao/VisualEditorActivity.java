@@ -21,7 +21,7 @@ public class VisualEditorActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visual_editor);
 
-        final ProgressDialog pd = ProgressDialog.show(this, "", "Please wait...", true);
+        final ProgressDialog pd = ProgressDialog.show(this, "", "Пожалуйста подождите...", true);
 
          myWebView = (WebView) findViewById(R.id.visualEditorView);
         WebSettings webSettings = myWebView.getSettings();

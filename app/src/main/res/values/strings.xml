@@ -7,10 +7,12 @@
     <string name="title_activity_connecting_nao">ConnectingNaoActivity</string>
 
 
-    <string name="start_game">Connect Nao</string>
-    <string name="new_game">New Game</string>
-    <string name="resume">Resume</string>
-    <string name="choose_level">Choose Level</string>
+    <string name="start_game">Начнём!</string>
+    <string name="new_game">Новая Игра</string>
+    <string name="resume">ПРОДОЛЖИТЬ</string>
+    <string name="choose_level">Выбрать задание</string>
     <string name="title_activity_choose_level">ChooseLevel</string>
+
+    <string name="ip">Введите выше указанные цифры в таком же порядке в NAO Client и...</string>
 
 </resources>
