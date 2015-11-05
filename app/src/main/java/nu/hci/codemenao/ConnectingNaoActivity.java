@@ -96,7 +96,7 @@ public class ConnectingNaoActivity extends Activity implements View.OnClickListe
                                             @Override
                                             public void run() {
                                                 startGameButton.setVisibility(View.VISIBLE);
-                                                waitTxt.setVisibility(View.INVISIBLE);
+                                                waitTxt.setVisibility(View.GONE);
                                             }
                                         });
                                         out.println("CE");

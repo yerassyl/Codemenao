@@ -13,58 +13,64 @@
     <TextView
         android:id="@+id/ip"
         android:text="Ваш IP адрес:"
-        android:textSize="30sp"
+        android:textSize="50sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_gravity="right"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"/>
+        android:layout_marginRight="215dp"
+        android:layout_marginEnd="215dp"
+        android:layout_above="@+id/textView"
+        android:layout_toLeftOf="@+id/textView"
+        android:layout_toStartOf="@+id/textView" />
 
     <TextView
         android:id="@+id/serverIp"
         android:text="ip"
-        android:textSize="30sp"
+        android:textSize="50sp"
         android:textColor="#FF7400"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_gravity="end"
         android:layout_alignParentTop="true"
-        android:layout_alignEnd="@id/startGameBtn"
-        android:layout_alignRight="@id/startGameBtn"/>
+        android:layout_alignEnd="@+id/startGameBtn"
+        android:layout_alignRight="@+id/startGameBtn"/>
 
     <TextView
         android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:textSize="20sp"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
         android:id="@+id/textView"
         android:text="@string/ip"
         android:layout_marginTop="29dp"
         android:layout_below="@+id/serverIp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@+id/waitTxt"
+        android:layout_alignStart="@+id/waitTxt" />
 
     <TextView android:id="@+id/waitTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/wait_please"
-        android:layout_below="@id/textView"
-        android:layout_alignParentEnd="true"
+        android:textSize="40sp"
+        android:visibility="visible"
+        android:layout_marginTop="52dp"
+        android:layout_below="@+id/textView"
         android:layout_alignParentRight="true"
-        android:visibility="visible"/>
+        android:layout_alignParentEnd="true" />
 
     <Button android:id="@+id/startGameBtn"
         style="@style/lets_go"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
         android:text="@string/start_game"
-        android:textSize="25sp"
+        android:textSize="35sp"
         android:layout_gravity="right"
         android:visibility="invisible"
         android:layout_below="@+id/waitTxt"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignRight="@+id/waitTxt"
+        android:layout_alignEnd="@+id/waitTxt" />
 
 </RelativeLayout>
