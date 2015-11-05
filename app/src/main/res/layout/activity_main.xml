@@ -1,19 +1,12 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:background="#80A7FF"
+    android:orientation="vertical"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <Button android:id="@+id/choose"
-        style="@style/choose_task_button"
-        android:text="@string/choose_level"
-        android:layout_height="wrap_content"
-        android:layout_width="150dp"
-        android:layout_gravity="center"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/new_game"></Button>
 
     <Button android:id="@+id/resume"
         style="@style/resume_button"
@@ -25,7 +18,7 @@
         android:layout_marginTop="50dp"
         android:width="150dp"
         android:visibility="visible"
-        android:layout_gravity="center_horizontal|top"></Button>
+        android:layout_gravity="center_horizontal"></Button>
 
     <Button android:id="@+id/new_game"
         style="@style/new_game_button"
@@ -37,5 +30,14 @@
         android:layout_below="@+id/resume"
         android:layout_alignStart="@+id/resume"></Button>
 
+    <Button android:id="@+id/choose"
+        style="@style/choose_task_button"
+        android:text="@string/choose_level"
+        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="35dp"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/new_game"></Button>
 
-</RelativeLayout>
+</LinearLayout>

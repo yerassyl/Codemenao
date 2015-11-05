@@ -2,6 +2,7 @@ package nu.hci.codemenao;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,7 @@ public class ChooseLevel extends AppCompatActivity implements ListView.OnItemCli
         listView = (ListView) findViewById(R.id.listView);
         listLevels = new ArrayList<String>();
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listLevels);
+        Typeface face = Typeface.createFromAsset(getAssets(),"fonts/kidsbold.otf");
 
         int lastLevel = getIntent().getIntExtra("current_level",1);
         for (int i=1;i<=lastLevel;i++) {
@@ -48,30 +50,51 @@ public class ChooseLevel extends AppCompatActivity implements ListView.OnItemCli
                     try{ConnectingNaoActivity.q.put("l1");}
                     catch (InterruptedException e){e.printStackTrace();}
                     Toast.makeText(getApplicationContext(),ConnectingNaoActivity.q.peek(),Toast.LENGTH_SHORT).show();
+                    Intent  i1 = new Intent(this,VisualEditorActivity.class);
+                    i1.putExtra("current_level",1);
+                    startActivity(i1);
                     break;
                 case 1:
                     try{ConnectingNaoActivity.q.put("l2");}
                     catch (InterruptedException e){e.printStackTrace();}
+                    Intent  i2 = new Intent(this,VisualEditorActivity.class);
+                    i2.putExtra("current_level",2);
+                    startActivity(i2);
                     break;
                 case 2:
                     try{ConnectingNaoActivity.q.put("l3");}
                     catch (InterruptedException e){e.printStackTrace();}
+                    Intent  i3 = new Intent(this,VisualEditorActivity.class);
+                    i3.putExtra("current_level",3);
+                    startActivity(i3);
                     break;
                 case 3:
                     try{ConnectingNaoActivity.q.put("l4");}
                     catch (InterruptedException e){e.printStackTrace();}
+                    Intent  i4 = new Intent(this,VisualEditorActivity.class);
+                    i4.putExtra("current_level",4);
+                    startActivity(i4);
                     break;
                 case 4:
                     try{ConnectingNaoActivity.q.put("l5");}
                     catch (InterruptedException e){e.printStackTrace();}
+                    Intent  i5 = new Intent(this,VisualEditorActivity.class);
+                    i5.putExtra("current_level",5);
+                    startActivity(i5);
                     break;
                 case 5:
                     try{ConnectingNaoActivity.q.put("l6");}
                     catch (InterruptedException e){e.printStackTrace();}
+                    Intent  i6 = new Intent(this,VisualEditorActivity.class);
+                    i6.putExtra("current_level",6);
+                    startActivity(i6);
                     break;
                 case 6:
                     try{ConnectingNaoActivity.q.put("l7");}
                     catch (InterruptedException e){e.printStackTrace();}
+                    Intent  i7 = new Intent(this,VisualEditorActivity.class);
+                    i7.putExtra("current_level",7);
+                    startActivity(i7);
                     break;
             }
     }

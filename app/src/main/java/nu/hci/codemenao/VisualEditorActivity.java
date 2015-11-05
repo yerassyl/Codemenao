@@ -1,6 +1,7 @@
 package nu.hci.codemenao;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -21,7 +22,10 @@ public class VisualEditorActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visual_editor);
 
-        final ProgressDialog pd = ProgressDialog.show(this, "", "Пожалуйста подождите...", true);
+        final ProgressDialog pd = ProgressDialog.show(this, "", "Пожалуйста, подождите...", true);
+
+        Intent i = getIntent();
+        i.getIntExtra("current_level",1);
 
          myWebView = (WebView) findViewById(R.id.visualEditorView);
         WebSettings webSettings = myWebView.getSettings();

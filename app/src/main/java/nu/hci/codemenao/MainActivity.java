@@ -13,7 +13,7 @@ import android.widget.Button;
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
     Button newGame, resume, chooseLevel;
-    SharedPreferences levels;
+    public static SharedPreferences levels;
 
     public static int level = 1;
 
