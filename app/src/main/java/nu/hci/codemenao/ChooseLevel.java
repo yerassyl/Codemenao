@@ -47,7 +47,7 @@ public class ChooseLevel extends AppCompatActivity implements ListView.OnItemCli
             String item = (String) listView.getItemAtPosition(position);
             switch(position) {
                 case 0:
-                    try{ConnectingNaoActivity.q.put("l1");}
+                    try{ConnectingNaoActivity.q.put("1");}
                     catch (InterruptedException e){e.printStackTrace();}
                     Toast.makeText(getApplicationContext(),ConnectingNaoActivity.q.peek(),Toast.LENGTH_SHORT).show();
                     Intent  i1 = new Intent(this,VisualEditorActivity.class);
@@ -55,42 +55,42 @@ public class ChooseLevel extends AppCompatActivity implements ListView.OnItemCli
                     startActivity(i1);
                     break;
                 case 1:
-                    try{ConnectingNaoActivity.q.put("l2");}
+                    try{ConnectingNaoActivity.q.put("2");}
                     catch (InterruptedException e){e.printStackTrace();}
                     Intent  i2 = new Intent(this,VisualEditorActivity.class);
                     i2.putExtra("current_level",2);
                     startActivity(i2);
                     break;
                 case 2:
-                    try{ConnectingNaoActivity.q.put("l3");}
+                    try{ConnectingNaoActivity.q.put("3");}
                     catch (InterruptedException e){e.printStackTrace();}
                     Intent  i3 = new Intent(this,VisualEditorActivity.class);
                     i3.putExtra("current_level",3);
                     startActivity(i3);
                     break;
                 case 3:
-                    try{ConnectingNaoActivity.q.put("l4");}
+                    try{ConnectingNaoActivity.q.put("4");}
                     catch (InterruptedException e){e.printStackTrace();}
                     Intent  i4 = new Intent(this,VisualEditorActivity.class);
                     i4.putExtra("current_level",4);
                     startActivity(i4);
                     break;
                 case 4:
-                    try{ConnectingNaoActivity.q.put("l5");}
+                    try{ConnectingNaoActivity.q.put("5");}
                     catch (InterruptedException e){e.printStackTrace();}
                     Intent  i5 = new Intent(this,VisualEditorActivity.class);
                     i5.putExtra("current_level",5);
                     startActivity(i5);
                     break;
                 case 5:
-                    try{ConnectingNaoActivity.q.put("l6");}
+                    try{ConnectingNaoActivity.q.put("6");}
                     catch (InterruptedException e){e.printStackTrace();}
                     Intent  i6 = new Intent(this,VisualEditorActivity.class);
                     i6.putExtra("current_level",6);
                     startActivity(i6);
                     break;
                 case 6:
-                    try{ConnectingNaoActivity.q.put("l7");}
+                    try{ConnectingNaoActivity.q.put("7");}
                     catch (InterruptedException e){e.printStackTrace();}
                     Intent  i7 = new Intent(this,VisualEditorActivity.class);
                     i7.putExtra("current_level",7);

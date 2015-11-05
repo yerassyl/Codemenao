@@ -12,7 +12,7 @@
     <string name="resume">ПРОДОЛЖИТЬ</string>
     <string name="choose_level">Выбрать задание</string>
     <string name="title_activity_choose_level">ChooseLevel</string>
-
+    <string name="wait_please">Подключаем Нао</string>
     <string name="ip">Введите выше указанные цифры в таком же порядке в NAO Client и...</string>
 
 </resources>
