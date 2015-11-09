@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -29,6 +30,8 @@ public class ConnectingNaoActivity extends Activity implements View.OnClickListe
 
     TextView serverIp, waitTxt;
     TextView fontChanged1,fontChanged2,fontChanged3,fontChanged4;
+
+    private Button btn;
 
     protected ServerSocket my_serverSocket;
     public static BlockingQueue<String> q;
@@ -70,13 +73,20 @@ public class ConnectingNaoActivity extends Activity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connecting_nao);
+
+        btn = (Button) findViewById(R.id.startGameBtn);
+        btn.setOnClickListener(this);
+
         serverIp = (TextView)findViewById(R.id.serverIp);
         waitTxt = (TextView)findViewById(R.id.waitTxt);
         fontChanged1 = (TextView) findViewById(R.id.ip);
         fontChanged2 = (TextView) findViewById(R.id.serverIp);
         fontChanged3 = (TextView) findViewById(R.id.textView);
         fontChanged4 = (TextView) findViewById(R.id.waitTxt);
+
         Typeface face = Typeface.createFromAsset(getAssets(),"fonts/kidsbold.otf");
+        btn.setTypeface(face);
+
         fontChanged1.setTypeface(face);
         fontChanged2.setTypeface(face);
         fontChanged3.setTypeface(face);

@@ -1,15 +1,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:id="@+id/layout"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:background="#80A7FF"
+    android:background="#4E70BA"
     android:orientation="vertical"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
 
     <Button android:id="@+id/resume"
-        style="@style/resume_button"
+        style="@style/main_activity_button"
         android:text="@string/resume"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,7 +22,7 @@
         android:layout_gravity="center_horizontal"></Button>
 
     <Button android:id="@+id/new_game"
-        style="@style/new_game_button"
+        style="@style/main_activity_button"
         android:text="@string/new_game"
         android:layout_height="wrap_content"
         android:layout_width="150dp"
@@ -31,7 +32,7 @@
         android:layout_alignStart="@+id/resume"></Button>
 
     <Button android:id="@+id/choose"
-        style="@style/choose_task_button"
+        style="@style/main_activity_button"
         android:text="@string/choose_level"
         android:layout_height="wrap_content"
         android:layout_width="150dp"
@@ -39,5 +40,15 @@
         android:layout_marginTop="35dp"
         android:layout_centerVertical="true"
         android:layout_alignStart="@+id/new_game"></Button>
+
+    <Button android:id="@+id/manual"
+        style="@style/main_activity_button"
+        android:text="@string/manual"
+        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="35dp"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/choose"></Button>
 
 </LinearLayout>

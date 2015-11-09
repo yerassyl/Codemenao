@@ -33,8 +33,8 @@ public class ChooseLevel extends AppCompatActivity implements ListView.OnItemCli
         adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,listLevels);
         Typeface face = Typeface.createFromAsset(getAssets(),"fonts/kidsbold.otf");
 
-        int lastLevel = getIntent().getIntExtra("current_level",1);
-        for (int i=1;i<=lastLevel;i++) {
+        //int lastLevel = getIntent().getIntExtra("current_level",1);
+        for (int i=1;i<=7;i++) {
             listLevels.add("Задание " + i);
         }
         listView.setOnItemClickListener(this);
