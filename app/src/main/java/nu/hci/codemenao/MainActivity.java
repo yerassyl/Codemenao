@@ -64,7 +64,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-
             case R.id.new_game:
                 Intent fromNew = new Intent(this,VisualEditorActivity.class);
                 level = 1;

@@ -3,14 +3,11 @@ package nu.hci.codemenao;
 import android.app.Activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Typeface;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -33,11 +30,24 @@ public class ConnectingNaoActivity extends Activity implements View.OnClickListe
     TextView serverIp, waitTxt;
     Button startGameButton;
     TextView fontChanged1,fontChanged2,fontChanged3,fontChanged4;
+
     protected ServerSocket my_serverSocket;
     public static BlockingQueue<String> q;
     Handler handler;
-
     BufferedReader in;
+
+    // Maze declaration
+    public static int[][] maze = {
+            {0,1,1,0,0,1},
+            {1,1,1,1,1,1},
+            {1,0,0,1,1,0},
+            {0,0,1,1,1,1},
+            {0,1,1,1,1,1}
+    };
+    public static int PositionVertical = 4;
+    public static int PositonHorizontal =1;
+    public static String direction = "r"; // r=right, l=left, t=top,b=bottom
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,17 +111,13 @@ public class ConnectingNaoActivity extends Activity implements View.OnClickListe
                                         });
                                         out.println("CE");
                                     }
-
                                 }catch(InterruptedException e){
                                     Log.d("yerchik", "couldn't take from queue: "+ e.getMessage());
                                 }
-
                             // Wrap a buffered reader round the socket input stream.
                             // Read the javadoc to understand why we do this rather than dealing
                             // with reading from raw sockets.
                         //}
-
-
                         // tidy up
                         in.close();
                         socket.close();
@@ -124,7 +130,9 @@ public class ConnectingNaoActivity extends Activity implements View.OnClickListe
             }
         }).start();
 
-
+    // just for testing
+        Intent intent = new Intent(ConnectingNaoActivity.this,MainActivity.class);
+        startActivity(intent);
     }
 
     /*public void startLevel1(View view) {
@@ -137,7 +145,6 @@ public class ConnectingNaoActivity extends Activity implements View.OnClickListe
      */
     public void getDeviceIpAddress() {
         try {
-
             for (Enumeration<NetworkInterface> enumeration = NetworkInterface
                     .getNetworkInterfaces(); enumeration.hasMoreElements();) {
                 NetworkInterface networkInterface = enumeration.nextElement();
