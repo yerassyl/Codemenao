@@ -32,6 +32,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         levels = getSharedPreferences("LEVELS", MODE_PRIVATE);
         levels.edit().putInt("current_level",level).apply();
 
+
         // This code just for testing
         //Intent intent = new Intent(MainActivity.this,ConnectingNaoActivity.class);
         //startActivity(intent);

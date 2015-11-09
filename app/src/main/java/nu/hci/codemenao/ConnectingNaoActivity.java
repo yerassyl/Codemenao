@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -23,12 +22,12 @@ import java.net.SocketException;
 import java.util.Enumeration;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import nu.hci.codemenao.model.Level;
 
 
 public class ConnectingNaoActivity extends Activity implements View.OnClickListener{
 
     TextView serverIp, waitTxt;
-    Button startGameButton;
     TextView fontChanged1,fontChanged2,fontChanged3,fontChanged4;
 
     protected ServerSocket my_serverSocket;
@@ -44,9 +43,28 @@ public class ConnectingNaoActivity extends Activity implements View.OnClickListe
             {0,0,1,1,1,1},
             {0,1,1,1,1,1}
     };
-    public static int PositionVertical = 4;
-    public static int PositonHorizontal =1;
-    public static String direction = "r"; // r=right, l=left, t=top,b=bottom
+    public static int posV = 4; // current position of the robot
+    public static int posH = 1;
+    public static String direction = "r";  // r=right, l=left, t=top,b=bottom
+    /*
+     ---> H
+     |
+     |
+     V
+     */
+    public static int playing_level;
+    // levels and their corresponding starting and finish positions with starting directions of the robot
+    // this code is not best practice
+    // should be improved later
+    public static Level level1 = new Level(4,1,4,2,"r"); // level 1
+    public static Level level2 = new Level(4,2,4,5,"r"); // level 2
+    public static Level level3 = new Level(4,5,4,5,"r"); // level 3
+    public static Level level4 = new Level(4,5,2,4,"t"); // level 4
+    public static Level level5 = new Level(2,4,0,1,"t"); // level 5
+    public static Level level6 = new Level(0,1,2,0,"t"); // level 6
+    public static Level level7 = new Level(2,0,1,4,"t"); // level 7
+    public static Level[] levelDetails = { level1,level2,level3,level4,level5,level6,level7};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +81,6 @@ public class ConnectingNaoActivity extends Activity implements View.OnClickListe
         fontChanged2.setTypeface(face);
         fontChanged3.setTypeface(face);
         fontChanged4.setTypeface(face);
-        startGameButton = (Button) findViewById(R.id.startGameBtn);
-        startGameButton.setTypeface(face);
-        startGameButton.setOnClickListener(this);
         getDeviceIpAddress();
         handler = new Handler();
 
@@ -96,21 +111,30 @@ public class ConnectingNaoActivity extends Activity implements View.OnClickListe
                         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                         String msg = in.readLine();
                                 try {
+                                    if (msg!=null && msg.equals("CE")){
+                                        out.println("CE");
+                                        Intent intent = new Intent(ConnectingNaoActivity.this,MainActivity.class);
+                                        startActivity(intent);
+
+                                    }
+                                    if (msg!=null && msg.equals("LVL")){
+                                        handler.post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                if (VisualEditorActivity.myWebView!=null) {
+                                                    VisualEditorActivity.myWebView.loadUrl("javascript:showRunBtn()");
+                                                }
+                                            }
+                                        });
+                                        String temp = q.take();
+                                        out.println(temp);
+                                    }
                                     if (msg!=null && msg.equals("ACK")){
                                         Log.d("yerchik/ack", "ack: " + msg);
                                         String temp = q.take();
                                         out.println(temp);
                                     }
-                                    if (msg!=null && msg.equals("CE")){
-                                        handler.post(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                startGameButton.setVisibility(View.VISIBLE);
-                                                waitTxt.setVisibility(View.GONE);
-                                            }
-                                        });
-                                        out.println("CE");
-                                    }
+
                                 }catch(InterruptedException e){
                                     Log.d("yerchik", "couldn't take from queue: "+ e.getMessage());
                                 }
@@ -131,8 +155,8 @@ public class ConnectingNaoActivity extends Activity implements View.OnClickListe
         }).start();
 
     // just for testing
-        Intent intent = new Intent(ConnectingNaoActivity.this,MainActivity.class);
-        startActivity(intent);
+        //Intent intent = new Intent(ConnectingNaoActivity.this,MainActivity.class);
+        //startActivity(intent);
     }
 
     /*public void startLevel1(View view) {
