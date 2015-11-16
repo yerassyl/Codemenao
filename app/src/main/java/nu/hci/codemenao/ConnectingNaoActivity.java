@@ -61,7 +61,7 @@ public class ConnectingNaoActivity extends Activity implements View.OnClickListe
     // should be improved later
     public static Level level1 = new Level(4,1,4,2,"r"); // level 1
     public static Level level2 = new Level(4,2,4,5,"r"); // level 2
-    public static Level level3 = new Level(4,5,4,5,"r"); // level 3
+    public static Level level3 = new Level(4,5,3,5,"r"); // level 3
     public static Level level4 = new Level(4,5,2,4,"t"); // level 4
     public static Level level5 = new Level(2,4,0,1,"t"); // level 5
     public static Level level6 = new Level(0,1,2,0,"t"); // level 6
@@ -125,7 +125,6 @@ public class ConnectingNaoActivity extends Activity implements View.OnClickListe
                                         out.println("CE");
                                         Intent intent = new Intent(ConnectingNaoActivity.this,MainActivity.class);
                                         startActivity(intent);
-
                                     }
                                     if (msg!=null && msg.equals("LVL")){
                                         handler.post(new Runnable() {
@@ -136,6 +135,7 @@ public class ConnectingNaoActivity extends Activity implements View.OnClickListe
                                                 }
                                             }
                                         });
+
                                         String temp = q.take();
                                         out.println(temp);
                                     }

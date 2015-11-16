@@ -109,8 +109,6 @@ public class WebAppInterface {
             }catch(InterruptedException e){
 
             }
-
-
         }else {
             // wrong code
             Log.d("yerchik","wrong code");
